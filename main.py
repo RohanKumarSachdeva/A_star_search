@@ -35,12 +35,9 @@ while run:
         x_pos = x_pos + velocity
 
     # fill the screen with back-ground colour
-    red = random.randint(0, 250)
-    green = random.randint(0, 250)
-    blue = random.randint(0, 250)
     screen_window.fill(bg_color)
     # Drawing a character on screen
-    pygame.draw.rect(screen_window, (red, green, blue),
+    pygame.draw.rect(screen_window, player_color,
                      (x_pos, y_pos, height, width))
     # To make the character visible we have to keep on refreshing
     pygame.display.update()
