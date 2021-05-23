@@ -100,14 +100,26 @@ def make_grid(rows, columns, width):
     # Grid is a 2-D list
     grid = []
     gap = rows // width
-    for i in range(rows):
+    for row in range(rows):
         # for every i append a list, creating a row
         grid.append([])
         # for every column in this row add a spot
-        for j in range(columns):
-            spot = Spot(i, j, gap, rows)
-            grid[i].append(spot)
+        for col in range(columns):
+            spot = Spot(row, col, gap, rows)
+            grid[row].append(spot)
     return grid
+
+
+def draw_grid_lines(window, rows, columns, width):
+    gap = rows // width
+    for row in range(rows):
+        start_co = (0, row * gap)
+        end_co = (width, row * gap)
+        pygame.draw.line(window, GREY, start_co, end_co)
+        for col in range(columns):
+            start_co = (col * gap, 0)
+            end_co = (col * gap, width)
+            pygame.draw.line(window, GREY, start_co, end_co)
 
 
 run = True
@@ -117,6 +129,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+    draw_grid_lines(screen_window, 50, screen_width)
 
 # terminating the game
 pygame.quit()
