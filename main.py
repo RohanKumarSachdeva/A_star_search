@@ -122,6 +122,17 @@ def draw_grid_lines(window, rows, columns, width):
             pygame.draw.line(window, GREY, start_co, end_co)
 
 
+def draw(window, grid, rows, columns, width):
+    screen_window.fill(WHITE)
+    # Get a row from the 2D grid.
+    for row in grid:
+        # Get Spot object from this row and draw
+        for spot in row:
+            spot.draw_node(window)
+    draw_grid_lines(window, rows, columns, width)
+    pygame.display.update()
+
+
 run = True
 while run:
     pygame.time.delay(50)
