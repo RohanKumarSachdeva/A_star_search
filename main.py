@@ -133,14 +133,29 @@ def draw(window, grid, rows, columns, width):
     pygame.display.update()
 
 
-run = True
-while run:
-    pygame.time.delay(50)
-    # capture the click on CROSS and make run false
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-    draw_grid_lines(screen_window, 50, screen_width)
+def get_clicked_pos(pos, rows, width):
+    gap = rows // width
+    y, x = pos
+    row = y // gap
+    col = x // gap
+    return row, col
 
-# terminating the game
-pygame.quit()
+
+def main(window, width):
+    rows = 50
+    columns = 50
+    grid = make_grid(rows, columns, width)
+    start_pos = None
+    end_pos = None
+    run = True
+    started = False
+    while run:
+        # capture the click on CROSS and make run false
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            if started:
+                continue
+
+    # terminating the game
+    pygame.quit()
