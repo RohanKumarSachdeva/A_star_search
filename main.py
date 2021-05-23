@@ -95,6 +95,21 @@ def heuristic(p1, p2):
     return manhattan_distance
 
 
+# Making a grid of Spots
+def make_grid(rows, columns, width):
+    # Grid is a 2-D list
+    grid = []
+    gap = rows // width
+    for i in range(rows):
+        # for every i append a list, creating a row
+        grid.append([])
+        # for every column in this row add a spot
+        for j in range(columns):
+            spot = Spot(i, j, gap, rows)
+            grid[i].append(spot)
+    return grid
+
+
 run = True
 while run:
     pygame.time.delay(50)
