@@ -1,6 +1,7 @@
 import pygame
 import math
 from queue import PriorityQueue
+
 # initializing pygame
 pygame.init()
 # Setting up game window, inserting a tuple (800,800)
@@ -23,6 +24,40 @@ GREY = (128, 128, 128)
 TURQUOISE = (64, 224, 208)
 
 
+class Spot:
+    def __init__(self, row, col, width, total_rows):
+        self.row = row
+        self.col = col
+        self.width = width
+        self.total_rows = total_rows
+        self.x_pos = row * width
+        self.y_pos = col * width
+        self.color = WHITE
+        self.neighbours = []
+
+    # Functions that reflect the state of the node.
+    def get_position(self):
+        return self.row, self.col
+
+    def is_closed(self):
+        return self.color == RED
+
+    def is_open(self):
+        return self.color == GREEN
+
+    def is_barrier(self):
+        return self.color == BLACK
+
+    def is_start(self):
+        return self.color == ORANGE
+
+    def is_end(self):
+        return self.color == PURPLE
+
+    def is_rest(self):
+        return self.color == WHITE
+
+
 run = True
 
 while run:
@@ -34,4 +69,3 @@ while run:
 
 # terminating the game
 pygame.quit()
-
