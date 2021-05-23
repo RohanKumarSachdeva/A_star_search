@@ -76,9 +76,26 @@ class Spot:
     def make_path(self):
         self.color = PURPLE
 
+    def draw_node(self, window):
+        pygame.draw.rect(window, self.color, self.x_pos,
+                         self.y_pos, self.width, self.width)
+
+    def update_neighbours(self, grid):
+        pass
+
+    # Comparing two Spot objects
+    def __lt__(self, other):
+        return False
+
+
+def heuristic(p1, p2):
+    x1, y1 = p1
+    x2, y2 = p2
+    manhattan_distance = abs(x1 - x2) + abs(y1 - y2)
+    return manhattan_distance
+
 
 run = True
-
 while run:
     pygame.time.delay(50)
     # capture the click on CROSS and make run false
