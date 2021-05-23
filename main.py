@@ -1,20 +1,28 @@
-import pygame, random
+import pygame
+import math
+from queue import PriorityQueue
 # initializing pygame
 pygame.init()
-# Setting up game window, inserting a tuple (800,600)
+# Setting up game window, inserting a tuple (800,800)
 screen_width = 800
-screen_height = 600
+screen_height = 800
 bg_color = (0, 0, 0)
 screen_window = pygame.display.set_mode((screen_width, screen_height))
 # Giving window caption name
-pygame.display.set_caption('MyGame')
-# drawing a character
-x_pos = 0
-y_pos = 0
-width = 50
-height = 50
-velocity = 50
-player_color = (250, 0, 0)
+pygame.display.set_caption('A* Path Finding Algorithm')
+# Color Codes
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+PURPLE = (128, 0, 128)
+ORANGE = (255, 165, 0)
+GREY = (128, 128, 128)
+TURQUOISE = (64, 224, 208)
+
+
 run = True
 
 while run:
@@ -23,24 +31,6 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-    # Upon holding a key press
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_UP] and y_pos - velocity >= 0:
-        y_pos = y_pos - velocity
-    if keys[pygame.K_DOWN] and y_pos + velocity + height <= screen_height:
-        y_pos = y_pos + velocity
-    if keys[pygame.K_LEFT] and x_pos - velocity >= 0:
-        x_pos = x_pos - velocity
-    if keys[pygame.K_RIGHT] and x_pos + velocity + width <= screen_width:
-        x_pos = x_pos + velocity
-
-    # fill the screen with back-ground colour
-    screen_window.fill(bg_color)
-    # Drawing a character on screen
-    pygame.draw.rect(screen_window, player_color,
-                     (x_pos, y_pos, height, width))
-    # To make the character visible we have to keep on refreshing
-    pygame.display.update()
 
 # terminating the game
 pygame.quit()
