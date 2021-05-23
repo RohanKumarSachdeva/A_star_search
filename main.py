@@ -170,7 +170,14 @@ def main(window, width):
                 elif spot != start_pos and spot != end_pos:
                     spot.make_barrier()
             elif pygame.mouse.get_pressed(3)[2]:  # 2 for Right click
-                pass
+                pos = pygame.mouse.get_pos()
+                row, col = get_clicked_pos(pos, rows, width)
+                spot = grid[row][col]
+                if spot.is_start():
+                    start_pos = None
+                elif spot.is_end():
+                    end_pos = None
+                spot.reset()
     # terminating the game
     pygame.quit()
 
